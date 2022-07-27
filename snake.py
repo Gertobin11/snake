@@ -1,4 +1,4 @@
-from turtle import Turtle
+from turtle import Turtle, setheading
 
 class Snake():
 
@@ -22,7 +22,17 @@ class Snake():
         self.get_snake_head().forward(20)
 
     def turn_left(self):
-        self.get_snake_head().left(90)
+        if self.get_snake_head().heading() != 0:
+            self.get_snake_head().setheading(180)
 
     def turn_right(self):
-        self.get_snake_head().right(90)
+        if self.get_snake_head().heading() != 180:
+            self.get_snake_head().setheading(0)
+
+    def turn_up(self):
+        if self.get_snake_head().heading() != 270:
+            self.get_snake_head().setheading(90)
+
+    def turn_down(self):
+        if self.get_snake_head().heading() != 90:
+            self.get_snake_head().setheading(270)
