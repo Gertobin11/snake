@@ -4,8 +4,6 @@ class Snake():
 
     def __init__(self):
         self.body = []
-
-    def create(self):
         n = 0
         for i in range(0, 3):
             snake_body = Turtle('square')

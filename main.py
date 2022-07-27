@@ -11,7 +11,6 @@ game_is_on = True
 snake = []
 
 snake = Snake()
-snake.create()
 
 screen.update()
 snake_head = snake.get_snake_head()
