@@ -20,13 +20,29 @@ def create_snake():
 
 create_snake()
 screen.update()
+snake_head = snake[0]
+
+def turn_left():
+    snake_head.left(90)
+
+def turn_right():
+    snake_head.right(90)
+
+screen.listen()
+screen.onkey(key='a', fun=turn_left)
+screen.onkey(key='d', fun=turn_right)
 
 
 while game_is_on:
-    for section in snake:
-        section.fd(20)
+    sleep(0.3)
     screen.update()
-    sleep(1)
+    for seg_num in range(len(snake) - 1, 0, -1):
+        cords = snake[seg_num - 1].pos()
+        snake[seg_num].goto(cords)
+    snake_head.forward(20)
 
+
+screen.listen()
+screen.onkey(key='w', fun=turn_left)
     
 screen.exitonclick()
