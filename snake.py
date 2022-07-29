@@ -1,4 +1,4 @@
-from turtle import Turtle, setheading
+from turtle import Turtle
 
 class Snake():
 
@@ -36,3 +36,7 @@ class Snake():
     def turn_down(self):
         if self.get_snake_head().heading() != 90:
             self.get_snake_head().setheading(270)
+
+
+    def get_head_location(self):
+        return self.get_snake_head().position()
