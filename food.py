@@ -15,3 +15,7 @@ class Food():
     
     def get_position(self):
         return self.snack.pos()
+
+    def hit_detection(self, snake):
+        if (snake[0] -10) <= self.get_position()[0] <= (snake[0] + 10) and snake[1] -10 <= self.get_position()[1] <= (snake[1] + 10):
+            return True

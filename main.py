@@ -15,17 +15,10 @@ food = Food()
 food.randomize()
 print(food.get_position())
 
-def hit_detection(snake, food):
-    print(snake)
-    if (snake[0] -10) <= food[0] <= (snake[0] + 10) and (snake[0] -10) <= food[0] <= (snake[0] + 10):
-        print('hit')
-
 screen.update()
 snake_head = snake.get_snake_head()
 snake_hit = snake.get_head_location()
 print(snake_hit)
-food_location = food.get_position()
-print(food_location)
 
 screen.listen()
 screen.onkey(key='Left', fun=snake.turn_left)
@@ -40,7 +33,9 @@ while game_is_on:
     snake.move()
     snake_head = snake.get_snake_head()
     snake_hit = snake.get_head_location()
-    hit_detection(snake=snake_hit, food=food_location)
+    if food.hit_detection(snake=snake_hit):
+        food.randomize()
+        print('yes')
 
 
 screen.exitonclick()
