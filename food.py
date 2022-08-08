@@ -9,8 +9,8 @@ class Food():
         self.snack.color('green')
 
     def randomize(self):
-        x_cord = random.randint(-300, 300)
-        y_cord = random.randint(-300, 300)
+        x_cord = random.randint(-280, 280)
+        y_cord = random.randint(-280, 280)
         self.snack.setposition(x_cord, y_cord)
     
     def get_position(self):

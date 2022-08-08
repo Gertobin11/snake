@@ -35,7 +35,11 @@ while game_is_on:
     snake_hit = snake.get_head_location()
     if food.hit_detection(snake=snake_hit):
         food.randomize()
-        print('yes')
+        snake.add_body_segment()
+    if snake.check_snake_hit_self():
+        break
+    if snake.check_border_hit():
+        break
 
 
 screen.exitonclick()

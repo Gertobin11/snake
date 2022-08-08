@@ -37,6 +37,26 @@ class Snake():
         if self.get_snake_head().heading() != 90:
             self.get_snake_head().setheading(270)
 
-
     def get_head_location(self):
         return self.get_snake_head().position()
+
+    def add_body_segment(self):
+        new_segment = Turtle('square')
+        new_segment.color('black', 'white')
+        last_segment_pos = self.body[-1].pos()
+        new_segment.setposition(last_segment_pos)
+        self.body.append(new_segment)
+
+    def check_snake_hit_self(self):
+        """  Method to heck if the snake had touches any section of the snake """
+        for i in range(1, len(self.body)):
+            if self.body[i].position() == self.get_head_location():
+                print('exit   self    hit')
+                return True
+
+    def check_border_hit(self):
+        """ Method t check if the snake head goes outside the border """
+        if -300 > self.get_head_location()[0] or self.get_head_location()[0] > 300:
+            return True
+        elif -300 > self.get_head_location()[1] or self.get_head_location()[1] > 300:
+            return True
