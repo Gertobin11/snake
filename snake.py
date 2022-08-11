@@ -1,5 +1,6 @@
 from turtle import Turtle
 
+
 class Snake():
 
     def __init__(self):
@@ -19,23 +20,23 @@ class Snake():
         for seg_num in range(len(self.body) - 1, 0, -1):
             cords = self.body[seg_num - 1].pos()
             self.body[seg_num].goto(cords)
-        self.get_snake_head().forward(20)
+        return self.get_snake_head().forward(20)
 
     def turn_left(self):
         if self.get_snake_head().heading() != 0:
-            self.get_snake_head().setheading(180)
+            return self.get_snake_head().setheading(180)
 
     def turn_right(self):
         if self.get_snake_head().heading() != 180:
-            self.get_snake_head().setheading(0)
+            return self.get_snake_head().setheading(0)
 
     def turn_up(self):
         if self.get_snake_head().heading() != 270:
-            self.get_snake_head().setheading(90)
+            return self.get_snake_head().setheading(90)
 
     def turn_down(self):
         if self.get_snake_head().heading() != 90:
-            self.get_snake_head().setheading(270)
+            return self.get_snake_head().setheading(270)
 
     def get_head_location(self):
         return self.get_snake_head().position()
@@ -45,18 +46,27 @@ class Snake():
         new_segment.color('black', 'white')
         last_segment_pos = self.body[-1].pos()
         new_segment.setposition(last_segment_pos)
-        self.body.append(new_segment)
+        return self.body.append(new_segment)
 
     def check_snake_hit_self(self):
-        """  Method to heck if the snake had touches any section of the snake """
+        """
+        Method to check if the snake head touches
+        any section of the snake
+        """
         for i in range(1, len(self.body)):
             if self.body[i].position() == self.get_head_location():
                 print('exit   self    hit')
                 return True
 
     def check_border_hit(self):
-        """ Method t check if the snake head goes outside the border """
-        if -300 > self.get_head_location()[0] or self.get_head_location()[0] > 300:
+        """ Method to check if the snake head goes outside the border """
+
+        # Get the location of the head on the x and y axis
+        x_axis = self.get_head_location()[0]
+        y_axis = self.get_head_location()[1]
+
+        # Return True if the snakehead exceeds the screen
+        if -300 > x_axis or x_axis > 300:
             return True
-        elif -300 > self.get_head_location()[1] or self.get_head_location()[1] > 300:
+        elif -300 > y_axis or y_axis > 300:
             return True
