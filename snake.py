@@ -66,7 +66,7 @@ class Snake():
         y_axis = self.get_head_location()[1]
 
         # Return True if the snakehead exceeds the screen
-        if -300 > x_axis or x_axis > 300:
+        if -290 > x_axis or x_axis > 290:
             return True
-        elif -300 > y_axis or y_axis > 300:
+        elif -290 > y_axis or y_axis > 290:
             return True

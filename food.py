@@ -25,5 +25,5 @@ class Food():
         y_axis = self.get_position()[1]
 
         if (snake[0] - 10 <= x_axis <= (snake[0] + 10)
-                and snake[1] - 10 <= y_axis <= snake[1] + 10):
+                and snake[1] - 15 <= y_axis <= snake[1] + 15):
             return True

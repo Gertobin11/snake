@@ -20,15 +20,36 @@ snake_head = snake.get_snake_head()
 snake_hit = snake.get_head_location()
 print(snake_hit)
 
-screen.listen()
-screen.onkey(key='Left', fun=snake.turn_left)
-screen.onkey(key='Right', fun=snake.turn_right)
-screen.onkey(key='Up', fun=snake.turn_up)
-screen.onkey(key='Down', fun=snake.turn_down)
+
+def play_again():
+    """ Reset the Board so the player can play the game again """
+    global score
+    global food
+    global snake
+    replay = (screen.textinput(prompt='Play again? Y or N: ',
+              title=f'You scored {score} points'))
+    if replay.lower() == 'y':
+        for turtle in screen.turtles():
+            turtle.reset()
+        food = Food()
+        food.randomize()
+        snake = Snake()
+        score = 0
+    elif replay.lower() == 'n':
+        exit()
+    else:
+        play_again()
 
 
 while game_is_on:
-    sleep(0.1)
+    # Allow the user to move the snake with the directional buttons
+    screen.listen()
+    screen.onkey(key='Left', fun=snake.turn_left)
+    screen.onkey(key='Right', fun=snake.turn_right)
+    screen.onkey(key='Up', fun=snake.turn_up)
+    screen.onkey(key='Down', fun=snake.turn_down)
+
+    sleep(0.08)
     screen.update()
     screen.title(f"Score : {score}")
     snake.move()
@@ -39,8 +60,8 @@ while game_is_on:
         snake.add_body_segment()
         score += 9
     if snake.check_snake_hit_self():
-        break
+        play_again()
     if snake.check_border_hit():
-        break
+        play_again()
 
 screen.exitonclick()
